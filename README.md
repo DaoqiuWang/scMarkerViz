@@ -1,5 +1,7 @@
 # scMarkerViz 使用说明
 
+[English documentation](README_EN.md)
+
 `scMarkerViz` 用于将单细胞差异表达结果绘制为按细胞群/cluster 排列的 marker effect 图。横轴表示细胞类型或 cluster，纵轴表示 `avg_log2FC` 等效应值；上调和下调基因分布在零点两侧，并可自动标注每组的代表性基因。
 
 该包直接接收差异表达结果数据框，不依赖 Seurat 对象，返回标准 `ggplot` 对象，可以继续叠加 `ggplot2` 图层或主题。
