@@ -56,6 +56,7 @@ common_options <- list(
   spread_width = 0.8,
   point_size = 0.8,
   group_label_angle = 70,
+  group_label_size = 3,
   base_size = 12
 )
 

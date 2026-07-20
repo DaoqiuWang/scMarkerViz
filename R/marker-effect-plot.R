@@ -38,6 +38,7 @@
 #' @param effect_limits Optional length-two visible effect range. Applied with
 #'   Cartesian zoom so rows are not removed.
 #' @param group_label_angle Rotation angle in degrees for cell-group labels.
+#' @param group_label_size Text size for cell-group labels.
 #' @param base_size Base font size.
 #' @param ... Additional arguments passed to [ggrepel::geom_text_repel()].
 #'
@@ -77,6 +78,7 @@ marker_effect_plot <- function(
     group_band = TRUE,
     effect_limits = NULL,
     group_label_angle = 0,
+    group_label_size = 3,
     base_size = 12,
     ...) {
   significance_by <- rlang::arg_match(significance_by)
@@ -91,7 +93,8 @@ marker_effect_plot <- function(
   point_layout <- rlang::arg_match(point_layout)
   spread_by <- rlang::arg_match(spread_by)
   validate_plot_options(effect_cutoff, significance_cutoff, label_n, spread_width,
-    jitter_width, seed, point_size, point_alpha, effect_limits, group_label_angle)
+    jitter_width, seed, point_size, point_alpha, effect_limits, group_label_angle,
+    group_label_size)
 
   marker_data <- normalize_marker_data(data, gene, group, effect, p_value, p_adjust, significance_by)
   marker_data <- classify_markers(marker_data, effect_cutoff, significance_cutoff, significance_by)
@@ -147,7 +150,7 @@ marker_effect_plot <- function(
       ggplot2::geom_text(
         data = group_data,
         ggplot2::aes(x = .data$.smv_group_position, y = 0, label = .data$.smv_group),
-        inherit.aes = FALSE, fontface = "bold", size = 3,
+        inherit.aes = FALSE, fontface = "bold", size = group_label_size,
         angle = group_label_angle
       )
   }
@@ -188,7 +191,8 @@ marker_effect_plot <- function(
 
 validate_plot_options <- function(effect_cutoff, significance_cutoff, label_n,
                                   spread_width, jitter_width, seed, point_size,
-                                  point_alpha, effect_limits, group_label_angle) {
+                                  point_alpha, effect_limits, group_label_angle,
+                                  group_label_size) {
   scalar_number <- function(x, nonnegative = TRUE) is.numeric(x) && length(x) == 1L && is.finite(x) && (!nonnegative || x >= 0)
   if (!scalar_number(effect_cutoff)) .smv_abort("`effect_cutoff` must be one finite non-negative number.", "scMarkerViz_invalid_option")
   if (!scalar_number(significance_cutoff) || significance_cutoff > 1) .smv_abort("`significance_cutoff` must be between 0 and 1.", "scMarkerViz_invalid_option")
@@ -203,6 +207,9 @@ validate_plot_options <- function(effect_cutoff, significance_cutoff, label_n,
   }
   if (!scalar_number(group_label_angle, FALSE)) {
     .smv_abort("`group_label_angle` must be one finite number.", "scMarkerViz_invalid_option")
+  }
+  if (!scalar_number(group_label_size)) {
+    .smv_abort("`group_label_size` must be one finite non-negative number.", "scMarkerViz_invalid_option")
   }
 }
 
