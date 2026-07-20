@@ -1,0 +1,21 @@
+Package: scMarkerViz
+Title: Reproducible Marker Effect Plots for Single-Cell Data
+Version: 0.1.1
+Authors@R: person("Daoqiu", "Wang", role = c("aut", "cre"), email = "daoqiu@example.com")
+Description: Creates reproducible cluster-wise marker effect plots from
+    differential expression tables. The package provides explicit column
+    mapping, validated significance classification, deterministic point
+    placement, stable marker selection, and vertical or horizontal layouts.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends: R (>= 4.1.0)
+Imports:
+    dplyr,
+    ggplot2,
+    ggrepel,
+    rlang
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

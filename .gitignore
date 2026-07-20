@@ -1,0 +1,11 @@
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+.Rcheck/
+*.Rcheck/
+*.tar.gz
+
+output/
