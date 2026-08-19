@@ -27,11 +27,9 @@ install.packages(
 
 ### Install from GitHub
 
-Replace `YOUR_USERNAME` with the GitHub account that hosts the repository:
-
 ```r
 install.packages("remotes")
-remotes::install_github("YOUR_USERNAME/scMarkerViz")
+remotes::install_github("DaoqiuWang/scMarkerViz")
 ```
 
 Load the package and verify its version:
