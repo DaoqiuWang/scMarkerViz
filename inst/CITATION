@@ -3,6 +3,7 @@ bibentry(
   title = "scMarkerViz: Reproducible Marker Effect Plots for Single-Cell Data",
   author = person("Daoqiu", "Wang", role = c("aut", "cre")),
   year = "2026",
+  doi = "10.5281/zenodo.22010312",
   note = "R package version 0.1.1",
   url = "https://github.com/DaoqiuWang/scMarkerViz"
 )
